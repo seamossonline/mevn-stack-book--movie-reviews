@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import MoviesRoute from './api/MoviesRoute.js';
+import UsersRoute from './api/UsersRoute.js'; // seamoss
 import dotenv from 'dotenv';
 import mongodb from 'mongodb';
 
@@ -19,13 +20,15 @@ class Index {
         Index.app.use(cors());
         Index.app.use(express.json());
         Index.app.use('/api/v0/tgates', MoviesRoute.configRoutes(Index.router));  // Movies === gate objects
+        // seamoss edit:
+        Index.app.use('/api/v0/users', UsersRoute.configRoutes(Index.router));  // error: route not producing the HTML in UsersRoute.js
         Index.app.use('*', (req, res) => {
             res.status(404).json({ error: 'not found' });
         });
     }
 
     static async setUpDatabase() {
-        const client = new mongodb.MongoClient(process.env.MOVIEREVIEWS_DB_URI);
+        const client = new mongodb.MongoClient(process.env.MOVIEREVIEWS_DB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
         const port = process.env.PORT || 8000;
         try {
             await client.connect();

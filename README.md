@@ -21,4 +21,9 @@ Port in use
 
 
 *** API Routes
-* /api/v0/tgates
+* /api/v0/tgates (movies, in this sample)
+* /api/v0/users
+
+*** Versioning Notes
+* Uses nodemon 2.0.20, do NOT add to package.json
+* Uses node 16.18.1, do NOT add to package.json

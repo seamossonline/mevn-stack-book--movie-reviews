@@ -1,6 +1,6 @@
 export default class UsersRoute {
     static configRoutes(router) {
-        router.route('/').get((req, res) => res.send('<h1>Movies Route</h1>'));
+        router.route('/users').get((req, res) => res.send('<h1>Users Route</h1>'));
         return router;
     }
 }
